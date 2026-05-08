@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>skillsource — Stacey Morrison</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green-900: #0e6e3f;
+    --green-700: #15945a;
+    --green-600: #1ba968;
+    --green-500: #22c47a;
+    --green-100: #e7f5ec;
+    --green-50:  #f1faf4;
+    --bg:        #2da25f;
+    --ink:       #1a1a1a;
+    --muted:     #5b6b62;
+    --line:      #e7ece9;
+  }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 28px 24px 60px;
+  }
+
+  /* ===== TOP BAR ===== */
+  .topbar {
+    background: #fff;
+    border-radius: 22px 22px 0 0;
+    padding: 22px 32px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--green-700);
+    letter-spacing: -0.3px;
+    font-style: italic;
+  }
+
+  .top-nav {
+    display: flex;
+    gap: 28px;
+    margin-left: auto;
+    align-items: center;
+  }
+
+  .top-nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .top-nav a:hover { color: var(--green-700); }
+
+  .btn {
+    padding: 11px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-primary { background: var(--green-700); color: #fff; }
+  .btn-primary:hover { background: var(--green-900); }
+
+  .btn-outline {
+    background: #fff;
+    color: var(--green-700);
+    border: 1.5px solid var(--green-700);
+  }
+  .btn-outline:hover { background: var(--green-50); }
+
+  /* ===== HEADER AREA ===== */
+  .header-area {
+    background: #fff;
+    border-radius: 0 0 22px 22px;
+    padding: 12px 32px 32px;
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 0 16px;
+  }
+
+  .back svg { width: 18px; height: 18px; }
+  .back:hover { color: var(--green-700); }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 28px;
+    align-items: start;
+  }
+
+  /* ===== PROFILE CARD ===== */
+  .profile-card {
+    background: #fff;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 6px 24px rgba(13, 75, 45, 0.06);
+  }
+
+  .cover {
+    height: 230px;
+    position: relative;
+    background: radial-gradient(ellipse at 70% 50%, #d8e9d4 0%, #eaf2e3 60%, #f4f5ee 100%);
+    overflow: hidden;
+  }
+
+  .cover-leaves {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .profile-body {
+    position: relative;
+    padding: 0 32px 28px;
+  }
+
+  .avatar-wrap {
+    position: absolute;
+    top: -85px;
+    left: 32px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    background: linear-gradient(135deg, #ffe6cf, #ffcfa6);
+    overflow: hidden;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+  }
+
+  .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .profile-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .profile-info {
+    margin-left: 184px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .name-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .name-row h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.4px;
+  }
+
+  .exp-pill {
+    background: var(--green-100);
+    color: var(--green-700);
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 22px;
+    color: var(--muted);
+    font-size: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .meta-item svg {
+    width: 16px;
+    height: 16px;
+    color: var(--green-700);
+  }
+
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .tag {
+    background: #eef3f0;
+    color: var(--ink);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .bookmark-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+
+  .bookmark-btn:hover {
+    background: var(--green-50);
+    color: var(--green-700);
+    border-color: var(--green-700);
+  }
+
+  .bookmark-btn svg { width: 18px; height: 18px; }
+
+  .profile-footer {
+    margin-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .status-available {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--green-700);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .status-available::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green-600);
+    box-shadow: 0 0 0 4px rgba(34,196,122,0.18);
+  }
+
+  /* ===== SIDE CARDS ===== */
+  .side-stack { display: flex; flex-direction: column; gap: 22px; }
+
+  .side-card {
+    background: #fff;
+    border-radius: 22px;
+    padding: 26px 26px 22px;
+    border: 1px solid var(--line);
+    box-shadow: 0 6px 24px rgba(13, 75, 45, 0.06);
+  }
+
+  .side-card h3 {
+    color: var(--green-700);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .chip {
+    background: #eef3f0;
+    color: var(--ink);
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 500;
+  }
+
+  .view-all {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 13px;
+    border-radius: 14px;
+    border: 1.5px solid var(--green-700);
+    color: var(--green-700);
+    background: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14.5px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .view-all:hover { background: var(--green-700); color: #fff; }
+
+  /* ===== POSTS SECTION ===== */
+  .posts-section {
+    background: #fff;
+    border-radius: 22px;
+    margin-top: 28px;
+    padding: 28px 32px 36px;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tab {
+    font-size: 15px;
+    color: #888;
+    font-weight: 500;
+    padding: 14px 0;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .tab.active { color: var(--green-700); font-weight: 700; }
+
+  .tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2.5px;
+    background: var(--green-700);
+    border-radius: 2px;
+  }
+
+  .tab:hover { color: var(--green-900); }
+
+  .tab-count {
+    background: var(--green-700);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  .toolbar {
+    margin-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .toolbar h2 { font-size: 20px; font-weight: 700; }
+  .toolbar h2 span { color: #999; font-weight: 400; font-size: 16px; }
+
+  .view-toggle {
+    display: flex;
+    background: var(--green-50);
+    border-radius: 12px;
+    padding: 4px;
+    gap: 2px;
+  }
+
+  .view-btn {
+    border: none;
+    background: transparent;
+    padding: 8px 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .view-btn svg { width: 16px; height: 16px; }
+
+  .view-btn.active {
+    background: #fff;
+    color: var(--green-700);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  /* Post grid 3x3 */
+  .posts-grid {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px 22px;
+  }
+
+  .post-card {
+    cursor: pointer;
+    transition: transform 0.25s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .post-card:hover { transform: translateY(-3px); }
+
+  .post-thumb {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #e9e9e9;
+  }
+
+  .post-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .thumb-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #fff;
+    color: var(--ink);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .heart-btn {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .heart-btn:hover { background: #fff; transform: scale(1.08); }
+
+  .heart-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--ink);
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .price-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.45);
+  }
+
+  .price-badge .unit { font-weight: 400; font-size: 13px; }
+
+  .post-body { padding: 14px 4px 0; }
+
+  .post-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .post-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #444;
+  }
+
+  .author-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-500), var(--green-700));
+  }
+
+  .post-stats {
+    display: flex;
+    align-items: center;
+    font-size: 12.5px;
+    color: #555;
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 12px;
+    border-right: 1px solid #e3e3e3;
+  }
+
+  .stat:first-child { padding-left: 0; }
+  .stat:last-child { border-right: none; }
+
+  /* List view */
+  .posts-list {
+    margin-top: 22px;
+    display: none;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .posts-list.active { display: flex; }
+  .posts-grid.hidden { display: none; }
+
+  .list-card {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 22px;
+    padding: 14px;
+    border-radius: 18px;
+    transition: all 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid transparent;
+  }
+
+  .list-card:hover {
+    background: var(--green-50);
+    border-color: var(--green-100);
+  }
+
+  .list-card .post-thumb { height: 180px; }
+
+  .list-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .list-body .post-title {
+    font-size: 19px;
+    -webkit-line-clamp: 1;
+    margin-bottom: 10px;
+  }
+
+  .list-body .excerpt {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Responsive */
+  @media (max-width: 980px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .posts-grid { grid-template-columns: repeat(2, 1fr); }
+    .top-nav { width: 100%; margin-left: 0; order: 3; flex-wrap: wrap; }
+  }
+
+  @media (max-width: 640px) {
+    .topbar { padding: 18px 20px; gap: 16px; }
+    .header-area { padding: 12px 20px 24px; }
+    .profile-body { padding: 0 20px 24px; }
+    .avatar-wrap { left: 50%; transform: translateX(-50%); top: -75px; width: 130px; height: 130px; }
+    .avatar { width: 130px; height: 130px; }
+    .profile-info { margin-left: 0; margin-top: 60px; text-align: center; }
+    .name-row, .meta-row, .tags { justify-content: center; }
+    .profile-row { justify-content: center; }
+    .posts-section { padding: 22px 18px 28px; }
+    .posts-grid { grid-template-columns: 1fr; }
+    .list-card { grid-template-columns: 1fr; }
+    .list-card .post-thumb { height: 200px; }
+    .tabs { gap: 22px; overflow-x: auto; }
+    .top-nav { gap: 14px; font-size: 13px; }
+    .name-row h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">skillsource</div>
+    <nav class="top-nav">
+      <a href="#">About &amp; Contact</a>
+      <a href="#">Log in as Talent</a>
+      <a href="#" class="btn btn-primary">Hire Talent</a>
+      <a href="#" class="btn btn-outline">Apply as Talent</a>
+    </nav>
+  </header>
+
+  <!-- HEADER AREA -->
+  <div class="header-area">
+    <a href="#" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back
+    </a>
+
+    <div class="grid-2">
+
+      <!-- PROFILE CARD -->
+      <article class="profile-card">
+        <div class="cover">
+          <svg class="cover-leaves" viewBox="0 0 800 240" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="leafG1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#1f7a3a"/>
+                <stop offset="100%" stop-color="#2da25f"/>
+              </linearGradient>
+              <linearGradient id="leafG2" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#2a8b48"/>
+                <stop offset="100%" stop-color="#4cb87a"/>
+              </linearGradient>
+              <linearGradient id="leafG3" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#256e34"/>
+                <stop offset="100%" stop-color="#3a9a5a"/>
+              </linearGradient>
+            </defs>
+
+            <g transform="translate(560 -20) rotate(-12)">
+              <path fill="url(#leafG1)" d="M120 0 C 200 30 250 110 240 220 C 230 310 160 350 80 330 C 10 310 -30 240 -10 160 C 10 80 60 20 120 0 Z"/>
+              <path fill="#f4f5ee" opacity="0.95" d="M40 80 L120 90 L70 130 Z"/>
+              <path fill="#f4f5ee" opacity="0.95" d="M30 160 L120 170 L60 220 Z"/>
+              <path fill="#f4f5ee" opacity="0.95" d="M70 250 L150 240 L100 290 Z"/>
+              <path fill="#f4f5ee" opacity="0.95" d="M150 50 L210 60 L170 100 Z"/>
+            </g>
+
+            <g transform="translate(380 30) rotate(18)">
+              <path fill="url(#leafG2)" d="M90 0 C 160 20 200 90 190 180 C 180 250 120 280 60 260 C 0 240 -25 180 -10 110 C 5 50 50 10 90 0 Z"/>
+              <path fill="#f4f5ee" opacity="0.92" d="M30 60 L100 70 L60 110 Z"/>
+              <path fill="#f4f5ee" opacity="0.92" d="M30 130 L110 130 L65 180 Z"/>
+              <path fill="#f4f5ee" opacity="0.92" d="M110 50 L160 60 L130 90 Z"/>
+            </g>
+
+            <g transform="translate(220 60) rotate(-8)">
+              <path fill="url(#leafG3)" d="M70 0 C 130 18 160 75 150 150 C 140 210 90 230 45 215 C 0 200 -20 150 -8 90 C 5 40 40 10 70 0 Z"/>
+              <path fill="#f4f5ee" opacity="0.92" d="M25 50 L80 55 L48 90 Z"/>
+              <path fill="#f4f5ee" opacity="0.92" d="M25 110 L85 110 L50 150 Z"/>
+            </g>
+
+            <path d="M780 60 Q 700 80 640 130" stroke="#1f7a3a" stroke-width="3" fill="none" opacity="0.5"/>
+            <path d="M460 0 Q 440 60 420 110" stroke="#2a8b48" stroke-width="2.5" fill="none" opacity="0.4"/>
+          </svg>
+        </div>
+
+        <div class="profile-body">
+          <div class="avatar-wrap">
+            <div class="avatar">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" alt="Stacey Morrison">
+            </div>
+          </div>
+
+          <div class="profile-row">
+            <div class="profile-info">
+              <div class="name-row">
+                <h1>Stacey Morrison</h1>
+                <span class="exp-pill">4 years exp.</span>
+              </div>
+
+              <div class="meta-row">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                  M&amp;A Specialist
+                </div>
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  UK, London
+                </div>
+              </div>
+
+              <div class="tags">
+                <span class="tag">Project</span>
+                <span class="tag">Interim</span>
+              </div>
+            </div>
+
+            <button class="bookmark-btn" title="Bookmark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="profile-footer">
+            <span class="status-available">Available for job</span>
+            <button class="btn btn-primary">Send request</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- SIDE CARDS -->
+      <aside class="side-stack">
+        <div class="side-card">
+          <h3>Skills</h3>
+          <div class="chip-group">
+            <span class="chip">M&amp;A</span>
+            <span class="chip">Valuation</span>
+            <span class="chip">Carve-Out</span>
+            <span class="chip">Divestment</span>
+            <span class="chip">Acquisition</span>
+          </div>
+          <a href="#" class="view-all">View all</a>
+        </div>
+
+        <div class="side-card">
+          <h3>Sectors</h3>
+          <div class="chip-group">
+            <span class="chip">Retail</span>
+            <span class="chip">Consumer</span>
+            <span class="chip">Services</span>
+            <span class="chip">Telecom</span>
+            <span class="chip">Software</span>
+            <span class="chip">Tech</span>
+          </div>
+          <a href="#" class="view-all">View all</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- POSTS SECTION -->
+  <section class="posts-section">
+
+    <nav class="tabs">
+      <a href="#" class="tab active">Listing</a>
+      <a href="#" class="tab">Reviews <span class="tab-count">157</span></a>
+      <a href="#" class="tab">About Us</a>
+    </nav>
+
+    <div class="toolbar">
+      <h2>My Posts <span>(9 articles)</span></h2>
+      <div class="view-toggle">
+        <button class="view-btn active" id="gridBtn" onclick="setView('grid')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          Grid
+        </button>
+        <button class="view-btn" id="listBtn" onclick="setView('list')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          List
+        </button>
+      </div>
+    </div>
+
+    <!-- GRID VIEW -->
+    <div class="posts-grid" id="gridView">
+
+      <a href="post-detail.html" class="post-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop" alt="">
+          <div class="thumb-tag">🔥 Hourly Reservation Only</div>
+          <div class="heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div class="price-badge">$200<span class="unit">/ Hour</span></div>
+        </div>
+        <div class="post-body">
+          <div class="post-title">The Pinnacle at Eden Park Oakwood Village</div>
+          <div class="post-author"><div class="author-avatar"></div>Stacey Morrison</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 3.5 (4,200)</div>
+            <div class="stat">📍 Orchards</div>
+            <div class="stat">📅 Jun 8-10</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-detail.html" class="post-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop" alt="">
+          <div class="thumb-tag">🔥 Hourly Reservation Available</div>
+          <div class="heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div class="price-badge">$200<span class="unit">/ Night</span></div>
+        </div>
+        <div class="post-body">
+          <div class="post-title">The Pinnacle at Eden Park Oakwood Village</div>
+          <div class="post-author"><div class="author-avatar"></div>Stacey Morrison</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 3.5 (4,200)</div>
+            <div class="stat">📍 Orchards</div>
+            <div class="stat">📅 Jun 8-10</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-detail.html" class="post-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop" alt="">
+          <div class="heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div class="price-badge">$200<span class="unit">/ Night</span></div>
+        </div>
+        <div class="post-body">
+          <div class="post-title">The Pinnacle at Eden Park Oakwood Village</div>
+          <div class="post-author"><div class="author-avatar"></div>Stacey Morrison</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 3.5 (4,200)</div>
+            <div class="stat">📍 Orchards</div>
+            <div class="stat">📅 Jun 8-10</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-detail.html" class="post-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop" alt="">
+          <div class="thumb-tag">🔥 Hourly Reservation Only</div>
+          <div class="heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div class="price-badge">$180<span class="unit">/ Night</span></div>
+        </div>
+        <div class="post-body">
+          <div class="post-title">Sunset Loft – Modern Suite Downtown</div>
+          <div class="post-author"><div class="author-avatar"></div>Stacey Morrison</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 4.8 (2,140)</div>
+            <div class="stat">📍 Lisbon</div>
+            <div class="stat">📅 Jul 4-6</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-detail.html" class="post-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=600&h=400&fit=crop" alt="">
+          <div class="heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div class="price-badge">$220<span class="unit">/ Night</span></div>
+        </div>
+        <div class="post-body">
+          <div class="post-title">Coastal Villa with Private Garden</div>
+          <div class="post-author"><div class="author-avatar"></div>Stacey Morrison</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 4.7 (3,500)</div>
+            <div class="stat">📍 Algarve</div>
+            <div class="stat">📅 Aug 1-3</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-detail.html" class="post-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&h=400&fit=crop" alt="">
+          <div class="thumb-tag">🔥 Hourly Reservation Available</div>
+          <div class="heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div class="price-badge">$160<span class="unit">/ Hour</span></div>
+        </div>
+        <div class="post-body">
+          <div class="post-title">Urban Studio – Minimalist Design</div>
+          <div class="post-author"><div class="author-avatar"></div>Stacey Morrison</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 4.4 (1,800)</div>
+            <div class="stat">📍 Porto</div>
+            <div class="stat">📅 Jun 20-22</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-detail.html" class="post-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=400&fit=crop" alt="">
+          <div class="heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div class="price-badge">$240<span class="unit">/ Night</span></div>
+        </div>
+        <div class="post-body">
+          <div class="post-title">Heritage House – Stone Walls & Wood</div>
+          <div class="post-author"><div class="author-avatar"></div>Stacey Morrison</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 4.9 (5,120)</div>
+            <div class="stat">📍 Sintra</div>
+            <div class="stat">📅 Sep 5-8</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-detail.html" class="post-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1567552379630-58fd3ee69c2b?w=600&h=400&fit=crop" alt="">
+          <div class="thumb-tag">🔥 Hourly Reservation Only</div>
+          <div class="heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div class="price-badge">$190<span class="unit">/ Hour</span></div>
+        </div>
+        <div class="post-body">
+          <div class="post-title">Skyline Penthouse – Panoramic View</div>
+          <div class="post-author"><div class="author-avatar"></div>Stacey Morrison</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 4.6 (2,900)</div>
+            <div class="stat">📍 Madeira</div>
+            <div class="stat">📅 Oct 12-14</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-detail.html" class="post-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&h=400&fit=crop" alt="">
+          <div class="heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div class="price-badge">$210<span class="unit">/ Night</span></div>
+        </div>
+        <div class="post-body">
+          <div class="post-title">Lakeside Cabin – Quiet Retreat</div>
+          <div class="post-author"><div class="author-avatar"></div>Stacey Morrison</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 4.5 (1,640)</div>
+            <div class="stat">📍 Aveiro</div>
+            <div class="stat">📅 Nov 2-4</div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- LIST VIEW -->
+    <div class="posts-list" id="listView">
+      <a href="post-detail.html" class="list-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop" alt="">
+          <div class="thumb-tag">🔥 Hourly Only</div>
+          <div class="price-badge">$200<span class="unit">/ Hour</span></div>
+        </div>
+        <div class="list-body">
+          <div class="post-title">The Pinnacle at Eden Park Oakwood Village</div>
+          <div class="excerpt">A luxurious downtown hideaway with floor-to-ceiling windows, panoramic city views, and curated interiors. Ideal for productive workdays or unforgettable evenings with friends.</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 3.5 (4,200)</div>
+            <div class="stat">📍 Orchards</div>
+            <div class="stat">📅 Jun 8-10</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-detail.html" class="list-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop" alt="">
+          <div class="thumb-tag">🔥 Available</div>
+          <div class="price-badge">$200<span class="unit">/ Night</span></div>
+        </div>
+        <div class="list-body">
+          <div class="post-title">The Pinnacle at Eden Park Oakwood Village</div>
+          <div class="excerpt">Elegant suite featuring soft natural lighting, designer furniture, and a serene urban panorama. Perfect for short getaways and intimate stays.</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 3.5 (4,200)</div>
+            <div class="stat">📍 Orchards</div>
+            <div class="stat">📅 Jun 8-10</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-detail.html" class="list-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop" alt="">
+          <div class="price-badge">$200<span class="unit">/ Night</span></div>
+        </div>
+        <div class="list-body">
+          <div class="post-title">The Pinnacle at Eden Park Oakwood Village</div>
+          <div class="excerpt">Warm wooden tones, a circular halo light, and a velvety sofa make this space feel like a movie scene. Cozy, modern, and inviting.</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 3.5 (4,200)</div>
+            <div class="stat">📍 Orchards</div>
+            <div class="stat">📅 Jun 8-10</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="post-detail.html" class="list-card">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop" alt="">
+          <div class="thumb-tag">🔥 Hourly Only</div>
+          <div class="price-badge">$180<span class="unit">/ Night</span></div>
+        </div>
+        <div class="list-body">
+          <div class="post-title">Sunset Loft – Modern Suite Downtown</div>
+          <div class="excerpt">A sleek loft bathed in golden-hour light, with curated artwork and minimalistic furnishings. Built for creators and travelers seeking inspiration.</div>
+          <div class="post-stats">
+            <div class="stat">⭐ 4.8 (2,140)</div>
+            <div class="stat">📍 Lisbon</div>
+            <div class="stat">📅 Jul 4-6</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </section>
+
+</div>
+
+<script>
+  function setView(mode) {
+    const grid = document.getElementById('gridView');
+    const list = document.getElementById('listView');
+    const gridBtn = document.getElementById('gridBtn');
+    const listBtn = document.getElementById('listBtn');
+
+    if (mode === 'grid') {
+      grid.classList.remove('hidden');
+      list.classList.remove('active');
+      gridBtn.classList.add('active');
+      listBtn.classList.remove('active');
+    } else {
+      grid.classList.add('hidden');
+      list.classList.add('active');
+      gridBtn.classList.remove('active');
+      listBtn.classList.add('active');
+    }
+  }
+</script>
+</body>
+</html>
